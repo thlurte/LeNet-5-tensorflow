@@ -1,7 +1,7 @@
  <h2 align="center">LeNet-5</h2>
 Tensorflow implementation of (Lecun et al., 1998)
 <br>
-<img src='https://github.com/thlurte/LeNet-5-tensorflow/blob/main/assets/a.png'>
+<img src='https://www.datasciencecentral.com/wp-content/uploads/2021/10/1lvvWF48t7cyRWqct13eU0w.jpeg'>
 
 
 ### Instructions
