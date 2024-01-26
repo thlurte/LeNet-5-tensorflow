@@ -1,0 +1,89 @@
+import tensorflow as tf
+import tensorflow.keras as tfk
+import tensorflow.keras.layers as tfl
+import tensorflow.nn as tfn
+import torch.nn as tn
+import numpy as np
+
+import tensorflow
+
+
+
+
+class LeNet5():
+    def __init__(self,input_shape) -> None:
+        # Input Shape
+        self.input_shape=input_shape
+
+        self.filters={
+            "C1":6
+            ,"C3":16
+            ,"C5":120
+        }
+
+        self.kernel_size={
+            "C1":(5,5)
+            ,"C3":(5,5)
+            ,"C5":(5,5)
+        }
+
+        self.sub_sampling={
+            "S2":(2,2)
+            ,"S4":(2,2)
+        }
+
+        
+    def model(self):
+
+        # L0 Input Layer (32,32,1)
+        input=tfl.InputLayer(
+            input_shape=self.input_shape
+        )
+            
+        # L1 Convolutional Layer (28,28,6)
+        x=tfl.Conv2D(
+            filters=self.filters["C1"]
+            ,kernel_size=self.kernel_size["C1"]
+        )(input)
+
+        # S2 Subsampling Layer (14,14,6)
+        x=tfl.AveragePooling2D(
+            pool_size=self.sub_sampling["S2"]
+        )(x)
+
+        # Activation Function (14,14,6)
+        x=tfl.Activation('sigmoid')(x)
+
+        # C3 Convolutional Layer (10,10,16)
+        x=tfl.Conv2D(
+            filters=self.filters['C3']
+            ,kernel_size=self.kernel_size['C3']
+        )(x)
+
+        # S4 Subsmapling Layer (5,5,16)
+        x=tfl.AveragePooling2D(
+            pool_size=self.sub_sampling['S4']
+        )(x)
+
+        # Activation Function (5,5,16)
+        x=tfl.Activation('sigmoid')(x)
+
+        # C5 Convolutional Layer (1,1,120)
+        x=tfl.Conv2D(
+            filters=self.filters["C5"]
+            ,kernel_size=self.kernel_size["C5"]
+        )(x)
+
+        # Flatten the output (120)
+        x=tfl.Flatten()(x)
+
+        # F6 Fully-connected Layer (84)
+        x=tfl.Dense(84)(x)
+
+        # Activation Function (10)
+        x=tfl.Activation('tanh')(x)
+
+        # Output Layer
+        x=tfl.Dense(10,activation='softmax')(x)
+
+        
