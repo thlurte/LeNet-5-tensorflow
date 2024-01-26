@@ -2,12 +2,7 @@ import tensorflow as tf
 import tensorflow.keras as tfk
 import tensorflow.keras.layers as tfl
 import tensorflow.nn as tfn
-import torch.nn as tn
 import numpy as np
-
-import tensorflow
-
-
 
 class LeNet5():
     def __init__(self,input_shape) -> None:
@@ -36,7 +31,7 @@ class LeNet5():
 
         # L0 Input Layer (32,32,1)
         input=tfl.Input(
-            input_shape=self.input_shape
+            shape=self.input_shape
         )
             
         # L1 Convolutional Layer (28,28,6)
@@ -85,4 +80,16 @@ class LeNet5():
         # Output Layer
         x=tfl.Dense(10,activation='softmax')(x)
 
-        
+        return input,x
+
+    def build(self,x,input):
+      
+      model = tfk.Model(input,x)
+      model.compile((loss='mse', optimizer='sgd', metrics=['accuracy'])
+
+      return model
+
+    def fit(self,model,trainds,testds,epochs,batch_size):
+      
+      history=model.fit(trainds,validation_data=testds,epochs=epochs,batch_size=batch_size)
+      return history
