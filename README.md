@@ -81,3 +81,8 @@ Mean Squared Error is used as loss function to calculate the error.
 ### Optimizer
 Stochastic gradient descent is used to find the global minima in this architecture.
 
+### References
+
+- [Gradient-based learning applied to document recognition](https://ieeexplore.ieee.org/document/726791)
+- [LeNet-5: Summary and Implementation](https://hackmd.io/@machine-learning/S1WvJyqmI)
+- [LeNet-5 TensorFlow 2.0](https://colab.research.google.com/github/maticvl/dataHacker/blob/master/CNN/LeNet_5_TensorFlow_2_0_datahacker.ipynb)
